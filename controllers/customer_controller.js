@@ -5,6 +5,7 @@ const dbCustomer = require('../models/customer_model.js')
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt')
 const saltRounds = 10;
+var salt = bcrypt.genSaltSync(saltRounds);
 require('dotenv').config()
 
 var signUp = function(req, res) {
@@ -38,7 +39,7 @@ var signIn = function(req, res) {
   })
 }
 
-methods.logOut = function(req, res) {
+var logOut = function(req, res) {
   var token = req.headers.token
   if (token) {
     token = ''
@@ -48,7 +49,6 @@ methods.logOut = function(req, res) {
 }
 
 //---------------------------------------------------------//
-
 
 var create = function(req, res) {
   dbCustomer.create(req.body, function(err, customer) {
@@ -116,5 +116,8 @@ module.exports = {
   create,
   remove,
   edit,
-  getAll
+  getAll,
+  signIn,
+  signUp,
+  logOut
 };
