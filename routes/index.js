@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 //routes for books
 router.post('/api/items', itemController.create)
 router.get('/api/items', itemController.getAll)
+router.get('/api/items/:_id', itemController.getById)
 router.delete('/api/items/:_id', itemController.remove)
 router.put('/api/items/:_id', itemController.edit)
 
@@ -28,11 +29,3 @@ router.delete('/api/transactions/:_id', transactionsController.remove)
 router.put('/api/transactions/:_id', transactionsController.edit)
 
 module.exports = router;
-
-
-
-
-
-
-
-

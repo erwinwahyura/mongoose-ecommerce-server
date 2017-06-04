@@ -23,6 +23,14 @@ var getAll = function(req, res) {
   })
 }
 
+var getById = function(req, res) {
+  let _id = req.params._id
+  dbItem.findOne(_id, function(err, item) {
+    if (!err) res.send(item)
+    else res.send(err)
+  })
+}
+
 var remove = function(req, res) {
   let id = req.params._id
   var myquery = {_id : id}
@@ -66,5 +74,6 @@ module.exports = {
   create,
   remove,
   edit,
-  getAll
+  getAll,
+  getById
 };

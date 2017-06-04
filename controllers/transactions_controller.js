@@ -6,11 +6,7 @@ const dbTransaction = require('../models/transactions_model.js')
 var add = function(req, res) {
   let date = new Date()
   var query = {memberid: req.body.memberid,
-               days: parseInt(req.body.days),
-               out_date : new Date(),
-               due_date: date.setDate(date.getDate() + parseInt(req.body.days)),
-              //  fine: req.body.fine,
-               booklist: req.body.booklist}
+               itemlist: req.body.itemlist}
 
   console.log("================================1");
   console.log(query);
@@ -22,7 +18,7 @@ var add = function(req, res) {
 }
 
 var getAll = function(req, res) {
-  dbTransaction.find({}).populate('booklist').exec(function(err, transactions) {
+  dbTransaction.find({}).populate('itemlist').exec(function(err, transactions) {
     if(!err) {
       res.send(transactions)
     } else {
@@ -35,7 +31,7 @@ var getById = function(req, res) {
   let id = req.params._id
   var query = {_id : id}
   console.log('===='+query);
-  dbTransaction.findById(req.params._id).populate('booklist').exec(function(err, transactions) {
+  dbTransaction.findById(req.params._id).populate('itemlist').exec(function(err, transactions) {
     console.log(transactions);
     if(!err) res.send(transactions)
     else if (err) res.send(err)
