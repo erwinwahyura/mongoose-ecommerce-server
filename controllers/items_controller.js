@@ -23,6 +23,17 @@ var getAll = function(req, res) {
   })
 }
 
+var getAllbyCategory = function(req, res) {
+  let cate = req.params.category
+  dbItem.find({category:cate}, function(err, item) {
+    if(!err) {
+      res.send(item)
+    } else {
+      res.send(err)
+    }
+  })
+}
+
 var getById = function(req, res) {
   let _id = req.params._id
   dbItem.findOne(_id, function(err, item) {
@@ -75,5 +86,6 @@ module.exports = {
   remove,
   edit,
   getAll,
+  getAllbyCategory,
   getById
 };

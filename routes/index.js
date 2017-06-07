@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 //routes for books
 router.post('/api/items', auth, itemController.create)
 router.get('/api/items', auth, itemController.getAll)
+router.get('/api/items/:category', auth, itemController.getAllbyCategory)
 router.get('/api/items/:_id', auth, itemController.getById)
 router.delete('/api/items/:_id', auth, itemController.remove)
 router.put('/api/items/:_id', auth, itemController.edit)
